@@ -1,4 +1,4 @@
-package com.example.banktrack.ui.viewmodel.screens
+package com.example.banktrack.ui.screens
 
 import androidx.fragment.app.Fragment
 
