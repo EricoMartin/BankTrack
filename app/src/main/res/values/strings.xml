@@ -10,4 +10,31 @@
     <string name="account_name">Account name</string>
     <string name="account_name_hint">e.g Martin Luther Quinn</string>
     <string name="scan">Scan</string>
+    <string-array name="banks">
+        <item>Access Bank</item>
+        <item>Citibank</item>
+        <item>Diamond Bank</item>
+        <item>Dynamic Standard Bank</item>
+        <item>Ecobank Nigeria</item>
+        <item>Fidelity Bank </item>
+        <item>First Bank</item>
+        <item>FCMB</item>
+        <item>GT Bank</item>
+        <item>Heritage Bank</item>
+        <item>Jaiz Bank</item>
+        <item>Keystone Bank</item>
+        <item>MoniePoint</item>
+        <item>OPay</item>
+        <item>Providus Bank</item>
+        <item>Polaris Bank</item>
+        <item>Stanbic IBTC</item>
+        <item>Standard Chartered</item>
+        <item>Sterling Bank</item>
+        <item>Suntrust Bank</item>
+        <item>Union Bank</item>
+        <item>UBA</item>
+        <item>Unity Bank</item>
+        <item>Wema Bank</item>
+        <item>Zenith Bank</item>
+    </string-array>
 </resources>
