@@ -42,6 +42,7 @@
             android:orientation="vertical">
             
             <ImageView
+                android:id="@+id/writeImage"
                 android:layout_marginBottom="8dp"
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
@@ -49,6 +50,7 @@
                 android:src="@drawable/write_tag_ic"/>
             
             <TextView
+                android:id="@+id/writeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/write_to_nfc_tag"
