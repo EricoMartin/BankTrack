@@ -11,6 +11,7 @@
     <string name="account_name_hint">e.g Martin Luther Quinn</string>
     <string name="scan">Scan</string>
     <string-array name="banks">
+        <item>Select an option</item>
         <item>Access Bank</item>
         <item>Citibank</item>
         <item>Diamond Bank</item>
