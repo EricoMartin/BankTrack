@@ -15,6 +15,9 @@
         android:theme="@style/Theme.BankTrack"
         tools:targetApi="31">
         <activity
+            android:name=".ui.screens.WriteNFCScreen"
+            android:exported="false" />
+        <activity
             android:name=".ui.screens.WriteTagScreen"
             android:exported="false" />
         <activity

@@ -78,9 +78,7 @@ class WriteNFCScreen : AppCompatActivity() {
                 )
                 viewModel.insert(bankDetails)
                 pendingWriteMessage = "${bankDetails.accountNumber};${bankDetails.accountName};${bankDetails.bankName}"
-
             }
-
 
         val intent = Intent(this, javaClass).apply {
             addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)

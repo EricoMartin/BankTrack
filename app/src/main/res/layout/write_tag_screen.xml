@@ -107,17 +107,28 @@
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginHorizontal="8dp"
         android:layout_marginBottom="24dp"
         android:text="@string/scan"
         android:textColor="@color/white"
         android:textAllCaps="false"
-        android:enabled="false"
-        android:background="@drawable/disabled_btn_bkg"
+        android:enabled="true"
+        android:backgroundTint="@color/pry_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+<!--    <Button-->
+<!--        android:id="@+id/button2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="52dp"-->
+<!--        android:layout_marginHorizontal="8dp"-->
+<!--        android:layout_marginBottom="24dp"-->
+<!--        android:text="@string/scan"-->
+<!--        android:textColor="@color/white"-->
+<!--        tools:layout_editor_absoluteX="154dp"-->
+<!--        tools:layout_editor_absoluteY="543dp" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
