@@ -12,12 +12,14 @@ class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen)
+        // Optionally set the status bar color programmatically
+//        window.statusBarColor = resources.getColor(android.R.color.white, theme)
 
         // Delayed navigation to MainActivity
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()  // Finish the SplashScreen activity so the user cannot go back to it
-        }, 8000)  // 10 seconds delay
+        }, 5000)  // 10 seconds delay
     }
 }

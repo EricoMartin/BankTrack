@@ -1,7 +1,12 @@
 package com.example.banktrack.ui.screens
 
+
+
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.banktrack.MainActivity
+
 import com.example.banktrack.databinding.DisplayTagDetailsBinding
 
 class DisplayTagDetails : AppCompatActivity() {

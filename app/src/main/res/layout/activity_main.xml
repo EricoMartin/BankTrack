@@ -10,6 +10,12 @@
 
 
     <Toolbar
+        android:contentInsetStart="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetStartWithNavigation="0dp"
+        android:contentInsetEndWithActions="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -28,6 +34,7 @@
     </Toolbar>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/write_card"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="12dp"
@@ -71,6 +78,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/read_card"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="12dp"
