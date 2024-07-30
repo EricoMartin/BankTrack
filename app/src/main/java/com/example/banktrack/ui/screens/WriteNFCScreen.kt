@@ -115,7 +115,9 @@ class WriteNFCScreen : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         intent.let {
-            if (NfcAdapter.ACTION_TAG_DISCOVERED == it.action) {
+            if (NfcAdapter.ACTION_TAG_DISCOVERED == it.action ||
+                NfcAdapter.ACTION_TECH_DISCOVERED== it.action ||
+                NfcAdapter.ACTION_TAG_DISCOVERED == it.action) {
                 val tag = it.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
                 tag?.let {
                     if (pendingWriteMessage != null) {
