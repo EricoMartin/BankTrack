@@ -29,6 +29,33 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.screens.ReadTagScreen"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.screens.ScanningTagScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="example.com"
+                    android:scheme="http" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.nfc.action.NFC_DISCOVERED" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.screens.EnterTagDetails"
+            android:exported="true"/>
+        <activity
+            android:name=".ui.screens.DisplayTagDetails"
+            android:exported="true" />
     </application>
 
 </manifest>
