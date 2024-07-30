@@ -1,9 +1,12 @@
 package com.example.banktrack.ui.screens
 
+
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.banktrack.MainActivity
+
 import com.example.banktrack.databinding.DisplayTagDetailsBinding
 
 class DisplayTagDetails : AppCompatActivity() {
@@ -22,11 +25,6 @@ class DisplayTagDetails : AppCompatActivity() {
         binding.bankNameValue.text = intent.getStringExtra("bank")!!
         binding.accountNumberTv.text = intent.getStringExtra("number")!!
         binding.accountNameTv.text = intent.getStringExtra("name")!!
-
-        binding.button.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
 
     }
 }

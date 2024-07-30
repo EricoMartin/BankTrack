@@ -75,6 +75,7 @@
                 android:resource="@xml/nfc_tech_filter"/>
         </activity>
 
+
         <activity
             android:name=".ui.screens.DisplayTagDetails"
             android:exported="true" />
