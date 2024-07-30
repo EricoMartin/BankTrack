@@ -5,14 +5,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.View.OnFocusChangeListener
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.banktrack.MainActivity
@@ -36,7 +34,7 @@ class WriteTagScreen : AppCompatActivity() {
         bankSpinner.adapter = spinAdapter
 
         // Set the initial state for the Spinner background
-        bankSpinner.background = ContextCompat.getDrawable(this, R.drawable.text_field_bkg)
+        bankSpinner.background = ContextCompat.getDrawable(this, R.drawable.unfocused_text_field_bkg)
 
         bankSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
@@ -54,13 +52,17 @@ class WriteTagScreen : AppCompatActivity() {
         setupTextWatchers(writeBtn, name, number, bankSpinner)
 
         // Set up OnFocusChangeListener for Spinner
-        bankSpinner.onFocusChangeListener = OnFocusChangeListener { v, hasFocus ->
+        bankSpinner.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
             bankSpinner.background = if (hasFocus) {
                 ContextCompat.getDrawable(this, R.drawable.focused_text_field_bkg)
             } else {
                 ContextCompat.getDrawable(this, R.drawable.unfocused_text_field_bkg)
             }
         }
+
+        // Make the Spinner request focus initially so the OnFocusChangeListener is activated
+        bankSpinner.requestFocus()
+        bankSpinner.clearFocus()
 
         backBtn.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
