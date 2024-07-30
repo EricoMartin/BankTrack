@@ -12,7 +12,17 @@
     <string name="scan">Scan</string>
     <string name="place_the_n">Place the NFC tag close to your device to begin scanning process</string>
     <string name="place_tag_c">Place tag close to device</string>
+    <string name="scanning">Scanning..</string>
+    <string name="BankTrack_uses_AES256">BankTrack uses  AES-256 encryption and is trusted by millions of user rounds the globe </string>
+    <string name="done">Done</string>
+    <string name="place_tag_close_to_device">Place tag close to device</string>
+    <string name="place_the_NFC_tag_close_to_your_device_to_begin_scanning_process">Place the NFC tag close to your device  to begin scanning process</string>
+    <string name="read_nfc_tag">Read NFC Tag</string>
+    <string name="tag_detected">Tag detected</string>
+    <string name="NFC_tag_detected_Reading_data">NFC tag detected. Reading data…</string>
+    <string name="import_details">Import details</string>
     <string-array name="banks">
+        <item>Select an option</item>
         <item>Access Bank</item>
         <item>Citibank</item>
         <item>Diamond Bank</item>
