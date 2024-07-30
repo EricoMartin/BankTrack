@@ -18,6 +18,6 @@ class SplashScreen : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()  // Finish the SplashScreen activity so the user cannot go back to it
-        }, 8000)  // 10 seconds delay
+        }, 5000)  // 10 seconds delay
     }
 }
