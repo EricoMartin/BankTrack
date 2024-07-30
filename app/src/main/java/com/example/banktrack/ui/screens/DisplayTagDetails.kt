@@ -19,6 +19,9 @@ class DisplayTagDetails : AppCompatActivity() {
         binding.backBtn.setOnClickListener {
             onBackPressed()
         }
+        binding.bankNameValue.text = intent.getStringExtra("bank")!!
+        binding.accountNumberTv.text = intent.getStringExtra("number")!!
+        binding.accountNameTv.text = intent.getStringExtra("name")!!
 
         binding.button.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)

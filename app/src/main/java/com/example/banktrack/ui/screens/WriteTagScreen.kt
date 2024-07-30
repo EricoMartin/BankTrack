@@ -34,8 +34,8 @@ class WriteTagScreen : AppCompatActivity() {
         bankSpinner = findViewById<Spinner>(R.id.bank_name_spinner)
         writeBtn = findViewById<Button>(R.id.button)
         val backBtn: ImageView = findViewById<android.widget.Toolbar>(R.id.toolbar).findViewById(R.id.backBtn)
-        val name  = findViewById<TextView>(R.id.account_name_tv)
-        val number = findViewById<TextView>(R.id.account_number_tv)
+        val name  = findViewById<EditText>(R.id.account_name_tv)
+        val number = findViewById<EditText>(R.id.account_number_tv)
 
         val spinAdapter = ArrayAdapter(this,
             android.R.layout.simple_spinner_dropdown_item, resources.getStringArray(R.array.banks))
