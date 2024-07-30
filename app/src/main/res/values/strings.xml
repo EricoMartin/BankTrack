@@ -10,6 +10,8 @@
     <string name="account_name">Account name</string>
     <string name="account_name_hint">e.g Martin Luther Quinn</string>
     <string name="scan">Scan</string>
+    <string name="place_the_n">Place the NFC tag close to your device to begin scanning process</string>
+    <string name="place_tag_c">Place tag close to device</string>
     <string-array name="banks">
         <item>Access Bank</item>
         <item>Citibank</item>
