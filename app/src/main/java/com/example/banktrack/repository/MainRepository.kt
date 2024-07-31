@@ -10,8 +10,8 @@ class MainRepository (private val detailDao: BankDetailDao ) {
     suspend fun insertDetail(bankDetail: BankDetail) {
         detailDao.insertBankDetail(bankDetail)
     }
-    suspend fun getDetail(acctName: String) {
-        detailDao.getBankDetail(acctName)
+    suspend fun getDetail(acctName: String): BankDetail {
+        return detailDao.getBankDetail(acctName)
     }
     suspend fun deleteAll() {
         detailDao.deleteAll()
