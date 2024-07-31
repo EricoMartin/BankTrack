@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">BankTrack</string>
     <string name="write_to_nfc_tag">Write to NFC tag</string>
-    <string name="secure_store_txt">Securely store your bank details on an NFC tag to access when needed</string>
+    <string name="secure_store_txt">Securely store your bank details</string>
+    <string name="download_tag_txt">Download bank details</string>
     <string name="read_from_nfc_tag">Read from NFC tag</string>
     <string name="basic_details_txt">Please enter your basic details, ensure it is accurate and double-check for any errors to avoid issues</string>
     <string name="bank_name">Bank name</string>

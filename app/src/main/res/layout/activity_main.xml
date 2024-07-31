@@ -30,9 +30,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/write_card"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="200dp"
         android:layout_margin="12dp"
-        android:layout_weight="1"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp">
 
@@ -45,7 +44,7 @@
             <ImageView
                 android:id="@+id/writeImage"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/write_tag_ic" />
@@ -57,9 +56,11 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/write_to_nfc_tag"
                 android:textSize="18sp"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -74,9 +75,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/read_card"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="200dp"
         android:layout_margin="12dp"
-        android:layout_weight="1"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp">
 
@@ -88,7 +88,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/read_tag_ic" />
@@ -105,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/secure_store_txt"
+                android:text="@string/download_tag_txt"
                 android:textSize="18sp" />
 
 
