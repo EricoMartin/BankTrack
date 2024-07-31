@@ -39,6 +39,7 @@
     </Toolbar>
 
     <TextView
+        android:textAlignment="center"
         android:id="@+id/basic_details_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -121,7 +122,7 @@
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:enabled="true"
-        android:backgroundTint="@color/pry_500"
+        android:backgroundTint="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

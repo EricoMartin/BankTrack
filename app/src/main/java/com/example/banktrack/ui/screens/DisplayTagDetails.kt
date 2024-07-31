@@ -14,22 +14,20 @@ class DisplayTagDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DisplayTagDetailsBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
         binding.backBtn.setOnClickListener {
             onBackPressed()
         }
-        binding.bankNameValue.text = intent.getStringExtra("bank")!!.toString()
-        binding.accountNumberTv.text = intent.getStringExtra("number")!!.toString()
-        binding.accountNameTv.text = intent.getStringExtra("name")!!.toString()
 
-        val name =  intent.getStringExtra("name")!!.toString()
-        binding.button.setOnClickListener{
+        binding.bankNameValue.text = intent.getStringExtra("bank")
+        binding.accountNumberTv.text = intent.getStringExtra("number")
+        binding.accountNameTv.text = intent.getStringExtra("name")
+
+        binding.button.setOnClickListener {
+            val name = intent.getStringExtra("name")
             Toast.makeText(this, "Name is $name", Toast.LENGTH_LONG).show()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, MainActivity::class.java))
         }
-
     }
 }

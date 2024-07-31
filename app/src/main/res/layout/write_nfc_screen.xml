@@ -129,9 +129,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:visibility="gone"/>
-        <com.google.android.material.button.MaterialButton
+        <Button
             android:id="@+id/button1"
-            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginHorizontal="8dp"
