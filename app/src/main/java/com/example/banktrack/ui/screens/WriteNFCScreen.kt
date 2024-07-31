@@ -32,18 +32,18 @@ class WriteNFCScreen : AppCompatActivity() {
     private lateinit var pendingIntent: PendingIntent
     private var pendingNfcOperation: ((String) -> Unit)? = null
     private var pendingWriteMessage: String? = null
-    private lateinit var save: Button
-    private lateinit var backBtn: ImageView
-    private lateinit var successBtn: Button
-    private lateinit var info: TextView
-    private lateinit var desc: TextView
-    private lateinit var nfcImg: ImageView
-    private lateinit var nfcNotFound: TextView
+    private lateinit var save : Button
+    private lateinit var backBtn : ImageView
+    private lateinit var successBtn : Button
+    private lateinit var info : TextView
+    private lateinit var desc : TextView
+    private lateinit var nfcImg : ImageView
+    private lateinit var nfcNotFound : TextView
     private lateinit var nfcSearch: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
+        enableEdgeToEdge()
         setContentView(R.layout.write_nfc_screen)
 
 
@@ -56,7 +56,7 @@ class WriteNFCScreen : AppCompatActivity() {
         nfcImg = findViewById<ImageView>(R.id.nfc_img)
         nfcNotFound = findViewById<TextView>(R.id.nfc_not_found)
         nfcSearch = findViewById(R.id.nfc_search)
-        successBtn = findViewById(R.id.button1)
+        successBtn  = findViewById(R.id.button1)
 
         val manager: NfcManager = getSystemService(Context.NFC_SERVICE) as NfcManager
         nfcAdapter = (manager.defaultAdapter ?: run {
@@ -72,13 +72,12 @@ class WriteNFCScreen : AppCompatActivity() {
 
         successBtn.setOnClickListener {
             val bankDetails = BankDetail(
-                accountNumber = intent.getStringExtra("number")!!,
-                accountName = intent.getStringExtra("name")!!,
-                bankName = intent.getStringExtra("bank")!!
+                accountNumber =  intent.getStringExtra("number")!!,
+                accountName =  intent.getStringExtra("name")!!,
+                bankName =  intent.getStringExtra("bank")!!
             )
             viewModel.insert(bankDetails)
-            pendingWriteMessage =
-                "${bankDetails.accountNumber};${bankDetails.accountName};${bankDetails.bankName}"
+            pendingWriteMessage = "${bankDetails.accountNumber};${bankDetails.accountName};${bankDetails.bankName}"
         }
 
         val intent = Intent(this, javaClass).apply {
@@ -91,11 +90,9 @@ class WriteNFCScreen : AppCompatActivity() {
         }
 
         viewModel.bankDetails.observe(this) { details ->
-            Toast.makeText(
-                this, "Account: ${details.accountNumber}, " +
-                        "Name: ${details.accountName}, " +
-                        "Bank: ${details.bankName}", Toast.LENGTH_LONG
-            ).show()
+            Toast.makeText(this,"Account: ${details.accountNumber}, " +
+                    "Name: ${details.accountName}, " +
+                    "Bank: ${details.bankName}", Toast.LENGTH_LONG).show()
         }
 
         viewModel.error.observe(this) { error ->
@@ -119,9 +116,8 @@ class WriteNFCScreen : AppCompatActivity() {
         super.onNewIntent(intent)
         intent.let {
             if (NfcAdapter.ACTION_TAG_DISCOVERED == it.action ||
-                NfcAdapter.ACTION_TECH_DISCOVERED == it.action ||
-                NfcAdapter.ACTION_TAG_DISCOVERED == it.action
-            ) {
+                NfcAdapter.ACTION_TECH_DISCOVERED== it.action ||
+                NfcAdapter.ACTION_TAG_DISCOVERED == it.action) {
                 val tag = it.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
                 tag?.let {
                     if (pendingWriteMessage != null) {
@@ -130,11 +126,10 @@ class WriteNFCScreen : AppCompatActivity() {
                             nfcImg.visibility = View.GONE
                             nfcSearch.visibility = View.VISIBLE
                             info.text = "Upload successful"
-                            desc.text =
-                                "Your information has been successfully uploaded to the NFC tag."
+                            desc.text = "Your information has been successfully uploaded to the NFC tag."
                             Toast.makeText(this, "Written to NFC tag", Toast.LENGTH_SHORT).show()
                             save.visibility = View.GONE
-                            successBtn.visibility = View.VISIBLE
+                            successBtn.visibility =View.VISIBLE
                         } else {
                             Toast.makeText(this, "Failed to write to NFC tag", Toast.LENGTH_SHORT)
                                 .show()
@@ -158,8 +153,7 @@ class WriteNFCScreen : AppCompatActivity() {
             nfcSearch.visibility = View.VISIBLE
             info.setTextColor(resources.getColor(R.color.pry_500))
             info.text = "Scanning ..."
-            desc.text =
-                "BankTrack uses AES-256 encryption and is trusted by millions of user rounds the globe."
+            desc.text = "BankTrack uses AES-256 encryption and is trusted by millions of user rounds the globe."
         } else {
             nfcImg.visibility = View.VISIBLE
             nfcSearch.visibility = View.GONE
