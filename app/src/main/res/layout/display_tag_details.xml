@@ -42,6 +42,7 @@
 
 
     <TextView
+        android:textAlignment="center"
         android:id="@+id/basic_details_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -118,7 +119,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/account_name_desc" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

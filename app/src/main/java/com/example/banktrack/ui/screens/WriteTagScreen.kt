@@ -41,7 +41,7 @@ class WriteTagScreen : AppCompatActivity() {
             android.R.layout.simple_spinner_dropdown_item, resources.getStringArray(R.array.banks))
 
         bankSpinner.adapter = spinAdapter
-        val spinValue = bankSpinner.selectedItem.toString()
+        var spinValue = bankSpinner.selectedItem.toString()
         bankSpinner.setSelection(spinAdapter.getPosition(spinValue))
 
         // Set the initial state for the Spinner background
@@ -51,6 +51,7 @@ class WriteTagScreen : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 // Change the background when an item is selected
                 bankSpinner.background = ContextCompat.getDrawable(this@WriteTagScreen, R.drawable.focused_text_field_bkg)
+                spinValue = bankSpinner.selectedItem.toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -79,12 +80,13 @@ class WriteTagScreen : AppCompatActivity() {
         }
 
 
-            writeBtn.setBackgroundColor(resources.getColor(R.color.pry_500))
+//            writeBtn.setBackgroundColor(resources.getColor(R.color.pry_500))
             writeBtn.setOnClickListener {
                 val intent = Intent(this, WriteNFCScreen::class.java)
                 intent.putExtra("name", name.text.toString())
                 intent.putExtra("number", number.text.toString())
-                intent.putExtra("bank", spinValue.toString())
+//                intent.putExtra("bank", spinValue)
+                intent.putExtra("bank", bankSpinner.selectedItem.toString())
                 startActivity(intent)
             }
 
@@ -101,16 +103,16 @@ class WriteTagScreen : AppCompatActivity() {
             }
         }
     }
-
-    private fun updateButtonState() {
-        if (isSpinnerSelected && isTextView1Filled && isTextView2Filled) {
-            writeBtn.isEnabled = true
-            writeBtn.setBackgroundColor(resources.getColor(R.color.pry_500)) // Change to your desired color
-        } else {
-            writeBtn.isEnabled = false
-            writeBtn.setBackgroundColor(Color.GRAY) // Change to your disabled color
-        }
-    }
+//
+//    private fun updateButtonState() {
+//        if (isSpinnerSelected && isTextView1Filled && isTextView2Filled) {
+//            writeBtn.isEnabled = true
+//            writeBtn.setBackgroundColor(resources.getColor(R.color.pry_500)) // Change to your desired color
+//        } else {
+//            writeBtn.isEnabled = false
+//            writeBtn.setBackgroundColor(Color.GRAY) // Change to your disabled color
+//        }
+//    }
 
     private fun setupTextWatchers(writeBtn: Button, name: EditText, number: EditText, bankSpinner: Spinner) {
         val textWatcher = object : TextWatcher {

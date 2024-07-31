@@ -10,14 +10,14 @@
 
 
     <Toolbar
-        android:contentInsetStart="0dp"
-        android:contentInsetEnd="0dp"
-        android:contentInsetLeft="0dp"
-        android:contentInsetRight="0dp"
-        android:contentInsetStartWithNavigation="0dp"
-        android:contentInsetEndWithActions="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:contentInsetStart="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetRight="0dp"
+        android:contentInsetEndWithActions="0dp"
+        android:contentInsetStartWithNavigation="0dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -25,53 +25,48 @@
             android:layout_gravity="center"
             android:src="@drawable/app_name_ic" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="12dp"
-            android:src="@drawable/history_ic" />
     </Toolbar>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/write_card"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="220dp"
         android:layout_margin="12dp"
-        android:layout_weight="1"
         app:cardCornerRadius="8dp"
-        app:cardElevation="4dp">
-        
+        app:cardElevation="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"
-            android:orientation="vertical">
-            
+            android:orientation="vertical"
+            android:padding="8dp">
+
             <ImageView
                 android:id="@+id/writeImage"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/write_tag_ic"/>
-            
+                android:src="@drawable/write_tag_ic" />
+
             <TextView
                 android:id="@+id/writeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/write_to_nfc_tag"
-                android:textStyle="bold"
                 android:layout_marginBottom="8dp"
-                android:textSize="18sp"/>
+                android:text="@string/write_to_nfc_tag"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/secure_store_txt"
                 android:layout_marginBottom="8dp"
-                android:textSize="18sp"/>
-            
+                android:text="@string/secure_store_txt"
+                android:textSize="18sp" />
+
         </LinearLayout>
 
 
@@ -80,38 +75,40 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/read_card"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="220dp"
         android:layout_margin="12dp"
-        android:layout_weight="1"
         app:cardCornerRadius="8dp"
-        app:cardElevation="4dp">
+        app:cardElevation="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="8dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="8dp">
+
             <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/read_tag_ic"/>
+                android:src="@drawable/read_tag_ic" />
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="@string/read_from_nfc_tag"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/secure_store_txt"
                 android:layout_marginBottom="8dp"
-                android:textSize="18sp"/>
-
+                android:text="@string/download_tag_txt"
+                android:textSize="18sp" />
 
 
         </LinearLayout>

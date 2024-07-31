@@ -31,120 +31,123 @@
             android:textSize="18sp"
             android:textStyle="bold" />
     </Toolbar>
+
     <LinearLayout
         android:id="@+id/line1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_margin="8dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
-    <ImageView
-        android:id="@+id/nfc_img"
-        android:layout_width="245.06dp"
-        android:layout_height="245.06dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/group_8925"
-        android:layout_marginHorizontal="80dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginBottom="80dp"
-        android:visibility="visible"
-        android:layout_centerVertical="true"/>
+
+        <ImageView
+            android:id="@+id/nfc_img"
+            android:layout_width="245.06dp"
+            android:layout_height="245.06dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/group_8925"
+            android:visibility="visible" />
+
         <TextView
             android:id="@+id/nfc_not_found"
             android:layout_width="245.06dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Sorry your device is not NFC compatible"
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:layout_centerVertical="true"
             android:layout_marginHorizontal="80dp"
             android:layout_marginTop="180dp"
             android:layout_marginBottom="80dp"
-            android:visibility="gone"
-            android:layout_centerVertical="true"/>
+            android:text="Sorry your device is not NFC compatible"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/nfc_search"
             android:layout_width="328dp"
             android:layout_height="328dp"
-            android:layout_gravity="center_horizontal"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/new_nfc"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="80dp"
             android:layout_marginBottom="40dp"
-            android:visibility="gone"
-            />
+            android:src="@drawable/new_nfc"
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/nfc_watch"
             android:layout_width="328dp"
             android:layout_height="328dp"
-            android:layout_gravity="center_horizontal"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/n_img"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="80dp"
             android:layout_marginBottom="40dp"
-            android:visibility="gone"
-            />
+            android:src="@drawable/n_img"
+            android:visibility="gone" />
 
         <TextView
+            android:layout_weight="1"
             android:id="@+id/place_tag_c"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/place_tag_c"
             android:layout_margin="16dp"
-            android:textAppearance="@style/place_tag_c"
-            android:lineSpacingExtra="8sp"
-            android:gravity="top"
-            android:visibility="visible"
             android:layout_marginBottom="16dp"
-            />
+            android:gravity="center"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/place_tag_c"
+            android:textAppearance="@style/place_tag_c"
+            android:visibility="visible" />
+
         <TextView
             android:id="@+id/place_the_n"
-            android:layout_width="335dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="@string/place_the_n"
-            android:layout_marginStart="16dp"
-            android:textAppearance="@style/place_the_n"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:layout_weight="1"
             android:lineSpacingExtra="5sp"
-            android:gravity="top"
-            android:visibility="visible"
-            android:layout_marginBottom="72dp"
-            />
+            android:text="@string/click_on_button_to_scan"
+            android:textAppearance="@style/place_the_n"
+            android:visibility="visible" />
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginBottom="24dp"
-            android:text="@string/scan"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
+            android:background="@color/pry_500"
             android:enabled="true"
-            android:backgroundTint="@color/pry_500"
+            android:text="@string/scan"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:visibility="gone"/>
-        <com.google.android.material.button.MaterialButton
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
             android:id="@+id/button1"
-            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:layout_marginHorizontal="8dp"
             android:layout_marginBottom="24dp"
-            android:text="@string/scan"
-            android:textColor="@color/pry_500"
-            android:textAllCaps="false"
+            android:backgroundTint="@color/pry_500"
             android:enabled="true"
-            app:strokeColor="@color/pry_500"
-            app:strokeWidth="3dp"
+            android:text="@string/scan"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            android:background="@drawable/button_shape"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="visible"/>
+            app:strokeColor="@color/pry_500"
+            app:strokeWidth="3dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
