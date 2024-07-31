@@ -29,9 +29,9 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun getBankDetails(id: Int) = viewModelScope.launch {
+    fun getBankDetails(name: String) = viewModelScope.launch {
         try {
-            val details = repository.getDetail(id.toString())
+            val details = repository.getDetail(name.toString())
             _bankDetails.value = details
         } catch (e: Exception) {
             error.value = "Error fetching bank details: ${e.message}"

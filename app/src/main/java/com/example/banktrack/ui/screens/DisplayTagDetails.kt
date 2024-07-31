@@ -1,12 +1,10 @@
 package com.example.banktrack.ui.screens
 
-
-
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.banktrack.MainActivity
-
 import com.example.banktrack.databinding.DisplayTagDetailsBinding
 
 class DisplayTagDetails : AppCompatActivity() {
@@ -22,9 +20,16 @@ class DisplayTagDetails : AppCompatActivity() {
         binding.backBtn.setOnClickListener {
             onBackPressed()
         }
-        binding.bankNameValue.text = intent.getStringExtra("bank")!!
-        binding.accountNumberTv.text = intent.getStringExtra("number")!!
-        binding.accountNameTv.text = intent.getStringExtra("name")!!
+        binding.bankNameValue.text = intent.getStringExtra("bank")!!.toString()
+        binding.accountNumberTv.text = intent.getStringExtra("number")!!.toString()
+        binding.accountNameTv.text = intent.getStringExtra("name")!!.toString()
+
+        val name =  intent.getStringExtra("name")!!.toString()
+        binding.button.setOnClickListener{
+            Toast.makeText(this, "Name is $name", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }
