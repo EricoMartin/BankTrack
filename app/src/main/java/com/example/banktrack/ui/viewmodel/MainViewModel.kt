@@ -4,9 +4,11 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.banktrack.data.database.BankTrackDB
 import com.example.banktrack.data.models.BankDetail
 import com.example.banktrack.repository.MainRepository
+import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
     private val repository: MainRepository
@@ -17,5 +19,22 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     init {
         val detailsDao = BankTrackDB.getDatabase(application).detailsDao()
         repository = MainRepository(detailsDao)
+    }
+
+    fun insert(bankDetails: BankDetail) = viewModelScope.launch {
+        try {
+            repository.insertDetail(bankDetails)
+        } catch (e: Exception) {
+            error.value = "Error inserting bank details: ${e.message}"
+        }
+    }
+
+    fun getBankDetails(id: Int) = viewModelScope.launch {
+        try {
+            val details = repository.getDetail(id.toString())
+            _bankDetails.value = details
+        } catch (e: Exception) {
+            error.value = "Error fetching bank details: ${e.message}"
+        }
     }
 }
