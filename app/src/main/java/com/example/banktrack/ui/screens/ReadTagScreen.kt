@@ -4,6 +4,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.health.connect.datatypes.units.Length
 import android.nfc.NfcAdapter
 import android.nfc.NfcManager
 import android.nfc.Tag
@@ -91,6 +92,7 @@ class ReadTagScreen : AppCompatActivity() {
                 val tag = it.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
                 tag?.let {
                     val id = NFCHelper.readFromTag(tag)
+                    Toast.makeText(this, id,Toast.LENGTH_LONG).show()
                     id?.let {
                         val tagItems = it.split(";")
                         if (tagItems.size == 3) {
