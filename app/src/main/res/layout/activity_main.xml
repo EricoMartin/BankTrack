@@ -30,10 +30,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/write_card"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         android:layout_margin="12dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="4dp">
+        app:cardElevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             <ImageView
                 android:id="@+id/writeImage"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="120dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/write_tag_ic" />
@@ -75,10 +75,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/read_card"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         android:layout_margin="12dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="4dp">
+        app:cardElevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -88,12 +88,13 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="120dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/read_tag_ic" />
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -102,6 +103,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"

@@ -71,13 +71,20 @@ class WriteNFCScreen : AppCompatActivity() {
         })!!
 
         successBtn.setOnClickListener {
+            Toast.makeText(this,"Writing, please wait...",Toast.LENGTH_SHORT).show()
             val bankDetails = BankDetail(
                 accountNumber =  intent.getStringExtra("number")!!,
                 accountName =  intent.getStringExtra("name")!!,
                 bankName =  intent.getStringExtra("bank")!!
             )
             viewModel.insert(bankDetails)
+//            pendingWriteMessage = "${bankDetails.accountNumber};${bankDetails.accountName};${bankDetails.bankName}"
             pendingWriteMessage = "${bankDetails.accountNumber};${bankDetails.accountName};${bankDetails.bankName}"
+            //
+            // Set background tint to gray and disable the button
+            successBtn.isEnabled = false
+            successBtn.backgroundTintList = getColorStateList(R.color.gray)
+
         }
 
         val intent = Intent(this, javaClass).apply {
@@ -89,15 +96,15 @@ class WriteNFCScreen : AppCompatActivity() {
             startActivity(Intent(this, WriteTagScreen::class.java))
         }
 
-        viewModel.bankDetails.observe(this) { details ->
-            Toast.makeText(this,"Account: ${details.accountNumber}, " +
-                    "Name: ${details.accountName}, " +
-                    "Bank: ${details.bankName}", Toast.LENGTH_LONG).show()
-        }
-
-        viewModel.error.observe(this) { error ->
-            Toast.makeText(this, error, Toast.LENGTH_LONG).show()
-        }
+//        viewModel.bankDetails.observe(this) { details ->
+//            Toast.makeText(this,"Account: ${details.accountNumber}, " +
+//                    "Name: ${details.accountName}, " +
+//                    "Bank: ${details.bankName}", Toast.LENGTH_LONG).show()
+//        }
+//
+//        viewModel.error.observe(this) { error ->
+//            Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+//        }
     }
 
     override fun onResume() {
@@ -123,13 +130,13 @@ class WriteNFCScreen : AppCompatActivity() {
                     if (pendingWriteMessage != null) {
                         val success = NFCHelper.writeToTag(tag, pendingWriteMessage!!)
                         if (success) {
-                            nfcImg.visibility = View.GONE
-                            nfcSearch.visibility = View.VISIBLE
-                            info.text = "Upload successful"
-                            desc.text = "Your information has been successfully uploaded to the NFC tag."
+//                            nfcImg.visibility = View.GONE
+//                            nfcSearch.visibility = View.VISIBLE
+//                            info.text = "Upload successful"
+//                            desc.text = "Your information has been successfully uploaded to the NFC tag."
                             Toast.makeText(this, "Written to NFC tag", Toast.LENGTH_SHORT).show()
-                            save.visibility = View.GONE
-                            successBtn.visibility =View.VISIBLE
+//                            save.visibility = View.GONE
+//                            successBtn.visibility =View.VISIBLE
                         } else {
                             Toast.makeText(this, "Failed to write to NFC tag", Toast.LENGTH_SHORT)
                                 .show()
@@ -139,36 +146,36 @@ class WriteNFCScreen : AppCompatActivity() {
                         val id = NFCHelper.readFromTag(tag)
                         pendingNfcOperation?.invoke(id)
                         pendingNfcOperation = null
-                        showScanningState(true)
+//                        showScanningState(true)
                     }
                 }
-                showScanningState(false)
+//                showScanningState(false)
             }
         }
     }
 
-    private fun showScanningState(isScanning: Boolean) {
-        if (isScanning) {
-            nfcImg.visibility = View.GONE
-            nfcSearch.visibility = View.VISIBLE
-            info.setTextColor(resources.getColor(R.color.pry_500))
-            info.text = "Scanning ..."
-            desc.text = "BankTrack uses AES-256 encryption and is trusted by millions of user rounds the globe."
-        } else {
-            nfcImg.visibility = View.VISIBLE
-            nfcSearch.visibility = View.GONE
-        }
-    }
+//    private fun showScanningState(isScanning: Boolean) {
+//        if (isScanning) {
+//            nfcImg.visibility = View.GONE
+//            nfcSearch.visibility = View.VISIBLE
+//            info.setTextColor(resources.getColor(R.color.pry_500))
+//            info.text = "Scanning ..."
+//            desc.text = "BankTrack uses AES-256 encryption and is trusted by millions of user rounds the globe."
+//        } else {
+//            nfcImg.visibility = View.VISIBLE
+//            nfcSearch.visibility = View.GONE
+//        }
+//    }
 
     private fun enableForegroundDispatch() {
         val intentFilter = IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED)
         val filters = arrayOf(intentFilter)
         nfcAdapter.enableForegroundDispatch(this, pendingIntent, filters, null)
-        showScanningState(true)
+//        showScanningState(true)
     }
 
     private fun disableForegroundDispatch() {
         nfcAdapter.disableForegroundDispatch(this)
-        showScanningState(false)
+//        showScanningState(false)
     }
 }

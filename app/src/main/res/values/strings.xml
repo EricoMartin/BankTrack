@@ -22,6 +22,9 @@
     <string name="tag_detected">Tag detected</string>
     <string name="NFC_tag_detected_Reading_data">NFC tag detected. Reading data…</string>
     <string name="import_details">Import details</string>
+    <string name="continue_txt">Continue</string>
+    <string name="click_on_button_to_scan">Click on button to scan</string>
+
     <string-array name="banks">
         <item>Select an option</item>
         <item>Access Bank</item>
