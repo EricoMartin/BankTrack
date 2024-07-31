@@ -70,7 +70,7 @@ class WriteNFCScreen : AppCompatActivity() {
             null // Set nfcAdapter to null
         })!!
 
-        save.setOnClickListener {
+        successBtn.setOnClickListener {
                 val bankDetails = BankDetail(
                     accountNumber =  intent.getStringExtra("number")!!,
                     accountName =  intent.getStringExtra("name")!!,

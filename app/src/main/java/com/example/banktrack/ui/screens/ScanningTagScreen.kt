@@ -26,9 +26,9 @@ class ScanningTagScreen : AppCompatActivity() {
     private var pendingWriteMessage: String? = null
     private lateinit var binding: ScanningTagScreenBinding
 
-    var acctName: String = ""
-    var acctNumber: String = ""
-    var bankName: String = ""
+    private var acctName: String = ""
+    private var acctNumber: String = ""
+    private var bankName: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +42,12 @@ class ScanningTagScreen : AppCompatActivity() {
             onBackPressed()
         }
 
+        acctName = intent.getStringExtra("name").toString()
+        acctNumber = intent.getStringExtra("number").toString()
+        bankName = intent.getStringExtra("bank").toString()
+
         binding.scanButton.setOnClickListener {
-            pendingNfcOperation = { id ->
-                viewModel.getBankDetails(id.toInt())
-            }
+
             val intent = Intent(this, DisplayTagDetails::class.java)
             intent.putExtra("name", acctName)
             intent.putExtra("number", acctNumber)
@@ -59,19 +61,13 @@ class ScanningTagScreen : AppCompatActivity() {
             bankName = details.bankName
         }
 
-        viewModel.error.observe(this) { error ->
-            Toast.makeText(this, error, Toast.LENGTH_LONG).show()
-        }
-
-        viewModel.error.observe(this) { error ->
-            Toast.makeText(this, error, Toast.LENGTH_LONG).show()
-        }
-
-        val manager: NfcManager = getSystemService(Context.NFC_SERVICE) as NfcManager
-        nfcAdapter = (manager.defaultAdapter ?: run {
-            Toast.makeText(this, "NFC is not supported on this device.", Toast.LENGTH_LONG).show()
-            null // Set nfcAdapter to null
-        })!!
+//        viewModel.error.observe(this) { error ->
+//            Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+//        }
+//
+//        viewModel.error.observe(this) { error ->
+//            Toast.makeText(this, error, Toast.LENGTH_LONG).show()
+//        }
 
         /*  val nfcManager = getSystemService(NFC_SERVICE) as NfcManager
         nfcAdapter = nfcManager.defaultAdapter
@@ -113,33 +109,33 @@ class ScanningTagScreen : AppCompatActivity() {
         }*/
     }
 
-    override fun onResume() {
-        super.onResume()
-        val intent = Intent(this, javaClass).apply {
-            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        }
-        pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE)
-        nfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null)
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        val intent = Intent(this, javaClass).apply {
+//            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+//        }
+//        pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE)
+//        nfcAdapter.enableForegroundDispatch(this, pendingIntent, null, null)
+//    }
 
-    override fun onPause() {
-        super.onPause()
-        nfcAdapter.disableForegroundDispatch(this)
-    }
-
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        intent?.let {
-            if (NfcAdapter.ACTION_TAG_DISCOVERED == it.action ||
-                NfcAdapter.ACTION_TECH_DISCOVERED== it.action ||
-                NfcAdapter.ACTION_TAG_DISCOVERED == it.action) {
-                val tag = it.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
-                tag?.let {
-                        val id = NFCHelper.readFromTag(tag)
-                        pendingNfcOperation?.invoke(id)
-                        pendingNfcOperation = null
-                    }
-                }
-            }
-        }
+//    override fun onPause() {
+//        super.onPause()
+//        nfcAdapter.disableForegroundDispatch(this)
+//    }
+//
+//    override fun onNewIntent(intent: Intent) {
+//        super.onNewIntent(intent)
+//        intent?.let {
+//            if (NfcAdapter.ACTION_TAG_DISCOVERED == it.action ||
+//                NfcAdapter.ACTION_TECH_DISCOVERED== it.action ||
+//                NfcAdapter.ACTION_TAG_DISCOVERED == it.action) {
+//                val tag = it.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
+//                tag?.let {
+//                        val id = NFCHelper.readFromTag(tag)
+//                        pendingNfcOperation?.invoke(id)
+//                        pendingNfcOperation = null
+//                    }
+//                }
+//            }
+//        }
 }
