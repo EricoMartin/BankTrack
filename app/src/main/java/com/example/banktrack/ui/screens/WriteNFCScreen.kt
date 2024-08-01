@@ -32,14 +32,14 @@ class WriteNFCScreen : AppCompatActivity() {
     private lateinit var pendingIntent: PendingIntent
     private var pendingNfcOperation: ((String) -> Unit)? = null
     private var pendingWriteMessage: String? = null
-    private lateinit var save : Button
+//    private lateinit var save : Button
     private lateinit var backBtn : ImageView
     private lateinit var successBtn : Button
     private lateinit var info : TextView
     private lateinit var desc : TextView
     private lateinit var nfcImg : ImageView
-    private lateinit var nfcNotFound : TextView
-    private lateinit var nfcSearch: ImageView
+//    private lateinit var nfcNotFound : TextView
+//    private lateinit var nfcSearch: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,13 +49,13 @@ class WriteNFCScreen : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        save = findViewById<Button>(R.id.button)
+//        save = findViewById<Button>(R.id.button)
         backBtn = findViewById<ImageView>(R.id.backBtn)
         info = findViewById<TextView>(R.id.place_tag_c)
         desc = findViewById<TextView>(R.id.place_the_n)
         nfcImg = findViewById<ImageView>(R.id.nfc_img)
-        nfcNotFound = findViewById<TextView>(R.id.nfc_not_found)
-        nfcSearch = findViewById(R.id.nfc_search)
+//        nfcNotFound = findViewById<TextView>(R.id.nfc_not_found)
+//        nfcSearch = findViewById(R.id.nfc_search)
         successBtn  = findViewById(R.id.button1)
 
         val manager: NfcManager = getSystemService(Context.NFC_SERVICE) as NfcManager
@@ -65,8 +65,8 @@ class WriteNFCScreen : AppCompatActivity() {
             info.text = "Tag not found"
             desc.text = "Your device is not NFC compatible"
             nfcImg.visibility = View.GONE
-            nfcNotFound.visibility = View.VISIBLE
-            save.visibility = View.GONE
+//            nfcNotFound.visibility = View.VISIBLE
+//            save.visibility = View.GONE
             null // Set nfcAdapter to null
         })!!
 
