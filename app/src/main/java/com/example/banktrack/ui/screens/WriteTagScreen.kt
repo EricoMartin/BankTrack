@@ -18,8 +18,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.banktrack.MainActivity
 import com.example.banktrack.R
+import com.example.banktrack.databinding.WriteTagScreenBinding
 
 class WriteTagScreen : AppCompatActivity() {
+
+    private lateinit var binding: WriteTagScreenBinding
+
     private lateinit var writeBtn: Button
     private lateinit var bankSpinner: Spinner
     private lateinit var backBtn: ImageView
@@ -30,33 +34,53 @@ class WriteTagScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.write_tag_screen)
+        // Instantiate binding
+        binding = WriteTagScreenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        // Instantiate views
         bankSpinner = findViewById<Spinner>(R.id.bank_name_spinner)
         writeBtn = findViewById<Button>(R.id.button)
-        val backBtn: ImageView = findViewById<android.widget.Toolbar>(R.id.toolbar).findViewById(R.id.backBtn)
-        val name  = findViewById<EditText>(R.id.account_name_tv)
+        val backBtn: ImageView =
+            findViewById<android.widget.Toolbar>(R.id.toolbar).findViewById(R.id.backBtn)
+        val name = findViewById<EditText>(R.id.account_name_tv)
         val number = findViewById<EditText>(R.id.account_number_tv)
-
-        val spinAdapter = ArrayAdapter(this,
-            android.R.layout.simple_spinner_dropdown_item, resources.getStringArray(R.array.banks))
-
+        // Adapter for spinner
+        val spinAdapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item, resources.getStringArray(R.array.banks)
+        )
+        // Set spinner adapter
         bankSpinner.adapter = spinAdapter
+        // Get current spinner value
         var spinValue = bankSpinner.selectedItem.toString()
+        // Sets the current value to be display in the spinner
         bankSpinner.setSelection(spinAdapter.getPosition(spinValue))
 
         // Set the initial state for the Spinner background
-        bankSpinner.background = ContextCompat.getDrawable(this, R.drawable.unfocused_text_field_bkg)
+        bankSpinner.background =
+            ContextCompat.getDrawable(this, R.drawable.unfocused_text_field_bkg)
 
         bankSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
                 // Change the background when an item is selected
-                bankSpinner.background = ContextCompat.getDrawable(this@WriteTagScreen, R.drawable.focused_text_field_bkg)
+                bankSpinner.background = ContextCompat.getDrawable(
+                    this@WriteTagScreen,
+                    R.drawable.focused_text_field_bkg
+                )
                 spinValue = bankSpinner.selectedItem.toString()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Change the background when nothing is selected
-                bankSpinner.background = ContextCompat.getDrawable(this@WriteTagScreen, R.drawable.unfocused_text_field_bkg)
+                bankSpinner.background = ContextCompat.getDrawable(
+                    this@WriteTagScreen,
+                    R.drawable.unfocused_text_field_bkg
+                )
             }
         }
 
@@ -81,18 +105,23 @@ class WriteTagScreen : AppCompatActivity() {
 
 
 //            writeBtn.setBackgroundColor(resources.getColor(R.color.pry_500))
-            writeBtn.setOnClickListener {
-                val intent = Intent(this, WriteNFCScreen::class.java)
-                intent.putExtra("name", name.text.toString())
-                intent.putExtra("number", number.text.toString())
+        writeBtn.setOnClickListener {
+            val intent = Intent(this, WriteNFCScreen::class.java)
+            intent.putExtra("name", name.text.toString())
+            intent.putExtra("number", number.text.toString())
 //                intent.putExtra("bank", spinValue)
-                intent.putExtra("bank", bankSpinner.selectedItem.toString())
-                startActivity(intent)
-            }
+            intent.putExtra("bank", bankSpinner.selectedItem.toString())
+            startActivity(intent)
+        }
 
 
         bankSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
                 isSpinnerSelected = position != 0 // First item is "Select an item"
 //                updateButtonState()
             }
@@ -114,7 +143,13 @@ class WriteTagScreen : AppCompatActivity() {
 //        }
 //    }
 
-    private fun setupTextWatchers(writeBtn: Button, name: EditText, number: EditText, bankSpinner: Spinner) {
+
+    private fun setupTextWatchers(
+        writeBtn: Button,
+        name: EditText,
+        number: EditText,
+        bankSpinner: Spinner
+    ) {
         val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -131,9 +166,39 @@ class WriteTagScreen : AppCompatActivity() {
         updateWriteButtonState(writeBtn, name, number, bankSpinner)
     }
 
-    private fun updateWriteButtonState(writeBtn: Button, name: EditText, number: EditText, bankSpinner: Spinner) {
-        val areFieldsValid = name.text.isNotEmpty() && number.text.isNotEmpty() && bankSpinner.selectedItem != null
+    private fun updateWriteButtonState(
+        writeBtn: Button,
+        name: EditText,
+        number: EditText,
+        bankSpinner: Spinner
+    ) {
+        val areFieldsValid =
+            name.text.isNotEmpty() && number.text.isNotEmpty() && bankSpinner.selectedItem != null
         writeBtn.isEnabled = areFieldsValid
-        writeBtn.setBackgroundColor(if (areFieldsValid) ContextCompat.getColor(this, R.color.orange) else ContextCompat.getColor(this, R.color.gray))
+        writeBtn.setBackgroundResource(
+            if (areFieldsValid) R.drawable.button_shape else R.drawable.disabled_btn_bkg
+        )
     }
+
+
+//    private fun updateWriteButtonState(
+//        writeBtn: Button,
+//        name: EditText,
+//        number: EditText,
+//        bankSpinner: Spinner
+//    ) {
+//        val areFieldsValid =
+//            name.text.isNotEmpty() && number.text.isNotEmpty() && bankSpinner.selectedItem != null
+//        writeBtn.isEnabled = areFieldsValid
+//        writeBtn.setBackgroundColor(
+//            if (areFieldsValid) ContextCompat.getColor(
+//                this,
+//                R.color.pry_500
+//            ) else ContextCompat.getColor(this, R.color.gray)
+//        )
+//    }
+//}
+
+//private fun setUpSpinner() {
+
 }

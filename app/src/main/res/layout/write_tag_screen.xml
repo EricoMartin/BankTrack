@@ -119,11 +119,10 @@
         android:layout_marginHorizontal="15dp"
         android:layout_marginBottom="24dp"
         android:text="@string/continue_txt"
-        android:textColor="@color/white"
+        android:textColor="#606060"
         android:textAllCaps="false"
         android:enabled="true"
-        android:background="@drawable/button_shape"
-        android:backgroundTint="@color/gray"
+        android:background="@drawable/disabled_btn_bkg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

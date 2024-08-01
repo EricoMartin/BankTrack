@@ -30,7 +30,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/write_card"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="200dp"
         android:layout_margin="12dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="10dp">
@@ -41,13 +41,27 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <ImageView
-                android:id="@+id/writeImage"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
                 android:layout_marginBottom="8dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/write_tag_ic" />
+                android:backgroundTint="@color/pry_500"
+                app:cardCornerRadius="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/upload_details_ic" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
 
             <TextView
                 android:id="@+id/writeText"
@@ -55,16 +69,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/write_to_nfc_tag"
-                android:textSize="18sp"
                 android:textColor="@color/black"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:text="@string/secure_store_txt"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
         </LinearLayout>
@@ -75,7 +88,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/read_card"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="200dp"
         android:layout_margin="12dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="10dp">
@@ -86,28 +99,41 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <ImageView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="100dp"
+                android:backgroundTint="@color/green"
                 android:layout_marginBottom="8dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/read_tag_ic" />
+                app:cardCornerRadius="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/download_details_ic" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/read_from_nfc_tag"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:textColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:text="@string/download_tag_txt"
+                android:textColor="@color/black"
                 android:textSize="18sp" />
 
 
