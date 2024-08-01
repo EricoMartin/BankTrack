@@ -1,7 +1,13 @@
 package com.example.banktrack.ui.screens
 
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
+import android.nfc.NfcAdapter
+import android.nfc.NfcManager
+import android.nfc.Tag
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,16 +19,24 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.banktrack.MainActivity
 import com.example.banktrack.R
 import com.example.banktrack.databinding.WriteTagScreenBinding
+import com.example.banktrack.ui.viewmodel.MainViewModel
+import com.example.banktrack.utils.NFCHelper
 
 class WriteTagScreen : AppCompatActivity() {
 
     private lateinit var binding: WriteTagScreenBinding
+
+    private lateinit var viewModel: MainViewModel
+    private lateinit var nfcAdapter: NfcAdapter
+    private lateinit var pendingIntent: PendingIntent
+    private var nfcTag: Tag? = null
 
     private lateinit var writeBtn: Button
     private lateinit var bankSpinner: Spinner
@@ -38,6 +52,13 @@ class WriteTagScreen : AppCompatActivity() {
         binding = WriteTagScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // Instantiate views
+
+        val manager: NfcManager = getSystemService(Context.NFC_SERVICE) as NfcManager
+        nfcAdapter = (manager.defaultAdapter ?: run {
+            // Handle NFC not supported case
+            Toast.makeText(this, "NFC is not supported on this device.", Toast.LENGTH_LONG).show()
+            null // Set nfcAdapter to null
+        })!!
         bankSpinner = findViewById<Spinner>(R.id.bank_name_spinner)
         writeBtn = findViewById<Button>(R.id.button)
         val backBtn: ImageView =
@@ -55,6 +76,8 @@ class WriteTagScreen : AppCompatActivity() {
         var spinValue = bankSpinner.selectedItem.toString()
         // Sets the current value to be display in the spinner
         bankSpinner.setSelection(spinAdapter.getPosition(spinValue))
+
+
 
         // Set the initial state for the Spinner background
         bankSpinner.background =
@@ -102,16 +125,23 @@ class WriteTagScreen : AppCompatActivity() {
         backBtn.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
         }
-
+        //Collect user bank details
+        val bankDetails = "${number.text.toString()}|${name.text.toString()}|${bankSpinner.selectedItem.toString()}"
 
 //            writeBtn.setBackgroundColor(resources.getColor(R.color.pry_500))
         writeBtn.setOnClickListener {
-            val intent = Intent(this, WriteNFCScreen::class.java)
-            intent.putExtra("name", name.text.toString())
-            intent.putExtra("number", number.text.toString())
-//                intent.putExtra("bank", spinValue)
-            intent.putExtra("bank", bankSpinner.selectedItem.toString())
-            startActivity(intent)
+            if (nfcTag != null && NFCHelper.writeToTag(nfcTag!!, bankDetails)) {
+                Toast.makeText(this, "Bank details saved to NFC tag", Toast.LENGTH_SHORT).show()
+                intent.putExtra("name", name.text.toString())
+                intent.putExtra("number", number.text.toString())
+                intent.putExtra("bank", bankSpinner.selectedItem.toString())
+                val intent = Intent(this, WriteNFCScreen::class.java)
+                startActivity(intent)
+                nfcTag = null // Clear the tag after writing
+            } else {
+                Toast.makeText(this, "Failed to write to NFC tag", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
 
@@ -123,25 +153,43 @@ class WriteTagScreen : AppCompatActivity() {
                 id: Long
             ) {
                 isSpinnerSelected = position != 0 // First item is "Select an item"
-//                updateButtonState()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
                 isSpinnerSelected = false
-//                updateButtonState()
             }
         }
     }
-//
-//    private fun updateButtonState() {
-//        if (isSpinnerSelected && isTextView1Filled && isTextView2Filled) {
-//            writeBtn.isEnabled = true
-//            writeBtn.setBackgroundColor(resources.getColor(R.color.pry_500)) // Change to your desired color
-//        } else {
-//            writeBtn.isEnabled = false
-//            writeBtn.setBackgroundColor(Color.GRAY) // Change to your disabled color
-//        }
-//    }
+
+    override fun onResume() {
+        super.onResume()
+        val intent = Intent(this, javaClass).apply {
+            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        }
+        val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE)
+        val filters = arrayOf(IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED))
+        nfcAdapter.enableForegroundDispatch(this, pendingIntent, filters, null)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        nfcAdapter.disableForegroundDispatch(this)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        intent.let {
+            if (NfcAdapter.ACTION_TAG_DISCOVERED == it.action ||
+                NfcAdapter.ACTION_TECH_DISCOVERED== it.action ||
+                NfcAdapter.ACTION_TAG_DISCOVERED == it.action) {
+                nfcTag = it.getParcelableExtra(NfcAdapter.EXTRA_TAG)
+                Toast.makeText(this, "NFC tag detected", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Failed to write to NFC tag", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
 
 
     private fun setupTextWatchers(
@@ -179,26 +227,4 @@ class WriteTagScreen : AppCompatActivity() {
             if (areFieldsValid) R.drawable.button_shape else R.drawable.disabled_btn_bkg
         )
     }
-
-
-//    private fun updateWriteButtonState(
-//        writeBtn: Button,
-//        name: EditText,
-//        number: EditText,
-//        bankSpinner: Spinner
-//    ) {
-//        val areFieldsValid =
-//            name.text.isNotEmpty() && number.text.isNotEmpty() && bankSpinner.selectedItem != null
-//        writeBtn.isEnabled = areFieldsValid
-//        writeBtn.setBackgroundColor(
-//            if (areFieldsValid) ContextCompat.getColor(
-//                this,
-//                R.color.pry_500
-//            ) else ContextCompat.getColor(this, R.color.gray)
-//        )
-//    }
-//}
-
-//private fun setUpSpinner() {
-
 }
